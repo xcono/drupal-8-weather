@@ -35,3 +35,8 @@ array [
     - label -> string "Phuket, Thailand"
 ]
 ```
+Or as Json:
+```bash
+$wm = \Drupal::service('xweather.manager');
+$data = $weather_manager->getNowAsJson();
+```
