@@ -1,0 +1,12 @@
+xweather.weather_location.*:
+  type: config_entity
+  label: 'Weather location config'
+  mapping:
+    id:
+      type: string
+      label: 'ID'
+    label:
+      type: label
+      label: 'Location'
+    uuid:
+      type: string

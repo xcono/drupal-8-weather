@@ -1,0 +1,56 @@
+<?php
+
+/**
+ * @file
+ * Contains xcono_weather.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function xweather_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the xcono_weather module.
+    case 'help.page.xweather':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Weather forecast module') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_cron().
+ */
+function xweather_cron() {
+
+  $config = \Drupal::getContainer()->get('config.factory')->getEditable('xweather.settings');
+
+  $last = $config->get('update.last');
+  $interval = $config->get('update.interval');
+
+  if (REQUEST_TIME >= ($last+$interval)) {
+
+    $repo = new \Drupal\xweather\Entity\ForecastRepository();
+    $extractor = new \Drupal\xweather\Utils\WeatherExtractor();
+
+    $locations = \Drupal\xweather\Entity\WeatherLocation::loadMultiple();
+    $repo->removeAll();
+
+    foreach($extractor->generate($locations) as $forecast) {
+      try {
+        $repo->create($forecast);
+      }
+      catch(Exception $e) {
+        \Drupal::logger('xcono_weather')->error('Не удалось записать прогноз в базу. Данные для записи: ' . implode(',', $forecast));
+      }
+    }
+
+    $config->set('update.last', REQUEST_TIME);
+    $config->save();
+  }
+}

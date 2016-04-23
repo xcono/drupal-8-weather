@@ -1,0 +1,4 @@
+services:
+    xweather.manager:
+        class: Drupal\xweather\Utils\WeatherManager
+        arguments: []

@@ -1,0 +1,8 @@
+xweather.locations.tab:
+  title: 'Locations'
+  route_name: entity.weather_location.collection
+  base_route: entity.weather_location.collection
+xweather.settings.tab:
+  title: 'Settings'
+  route_name: xweather.settings_form
+  base_route: entity.weather_location.collection

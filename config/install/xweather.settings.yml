@@ -1,0 +1,5 @@
+update:
+    last: 0
+    interval: 7200
+settings:
+    api_key: ''

@@ -1,0 +1,9 @@
+# Weather location menu items definition
+entity.weather_location.collection:
+  title: 'Weather location'
+  route_name: entity.weather_location.collection
+  base_route: entity.weather_location.collection
+  description: 'List Weather location (bundles)'
+  parent: system.admin_structure
+  weight: 10
+

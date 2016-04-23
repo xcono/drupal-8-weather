@@ -1,0 +1,11 @@
+entity.weather_location.add_form:
+  route_name: 'entity.weather_location.add_form'
+  title: 'Add Weather location'
+  appears_on:
+    - entity.weather_location.collection
+
+entity.weather_location.settings:
+  route_name: 'xweather.settings_form'
+  title: 'Settings'
+  appears_on:
+    - entity.weather_location.collection
