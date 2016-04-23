@@ -33,7 +33,7 @@ class WeatherExtractor {
 				$response = \Drupal::httpClient()->get($this->url($location->id()));
 
 				if($response->getStatusCode() >= 400) {
-					throw new \Exception('Не удалось получить погоду для ' . $location->label() . ' по причине: ' . $response->getStatusCode());
+					throw new \Exception('Cannot get response for location: ' . $location->label() . ' because of ' . $response->getStatusCode());
 				}
 
 				$forecasts = Json::decode($response->getBody()->getContents())['list'];

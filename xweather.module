@@ -46,7 +46,7 @@ function xweather_cron() {
         $repo->create($forecast);
       }
       catch(Exception $e) {
-        \Drupal::logger('xcono_weather')->error('Не удалось записать прогноз в базу. Данные для записи: ' . implode(',', $forecast));
+        \Drupal::logger('xcono_weather')->error('Cannot write forecast to database. Tried to insert: ' . implode(',', $forecast));
       }
     }
 
